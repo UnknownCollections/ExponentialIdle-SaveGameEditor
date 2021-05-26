@@ -1,0 +1,22 @@
+[
+    { "name": "x", "symbol": "x" },
+    { "name": "y", "symbol": "y" },
+    { "name": "z", "symbol": "z" },
+    { "name": "s", "symbol": "s" },
+    { "name": "u", "symbol": "u" },
+    { "name": "v", "symbol": "v" },
+    { "name": "w", "symbol": "w" },
+    { "name": "alpha", "symbol": "α"},
+    { "name": "beta", "symbol": "β"},
+    { "name": "gamma", "symbol": "γ"},
+    { "name": "delta", "symbol": "δ"},
+    { "name": "epsilon", "symbol": "ε"},
+    { "name": "zeta", "symbol": "ζ"},
+    { "name": "eta", "symbol": "η"},
+    { "name": "theta", "symbol": "θ"},
+    { "name": "iota", "symbol": "ι"},
+    { "name": "kappa", "symbol": "κ"},
+    { "name": "lambda", "symbol": "λ"},
+    { "name": "nu", "symbol": "ν"},
+    { "name": "xi", "symbol": "ξ"}
+]

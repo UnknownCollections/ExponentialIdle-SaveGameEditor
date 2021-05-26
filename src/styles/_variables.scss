@@ -1,0 +1,12 @@
+$link-decoration: none;
+$btn-focus-box-shadow: none;
+$btn-focus-width: 0;
+$input-border-color: rgba(255, 255, 255, 0.25);
+$input-border-width: 1px;
+$link-color: #05fad9;
+
+@import "~bootswatch/dist/superhero/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";

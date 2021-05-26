@@ -1,0 +1,3 @@
+[submodule "src/lib/third-party/1ekf/ExidleStars"]
+	path = src/lib/third-party/1ekf/ExidleStars
+	url = https://github.com/1ekf/ExidleStars
