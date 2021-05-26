@@ -111,7 +111,7 @@ function generateConfig(isProduction) {
         type: 'asset',
         generator: {
             filename: isProduction ? 'fonts/[name]-[contenthash][ext][query]' : 'fonts/[name][ext]',
-            publicPath: '/',
+            publicPath : '../'
         },
     };
 
@@ -135,6 +135,7 @@ function generateConfig(isProduction) {
         output: {
             path: path.resolve(__dirname, isProduction ? 'docs': 'dist'),
             filename: isProduction ? 'js/[name]-[contenthash].js' : 'js/[name].js',
+            publicPath: '',
         },
         module: {
             rules: [

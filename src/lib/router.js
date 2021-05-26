@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import Editor from '@/pages/Editor';
 import Acknowledgments from '@/pages/Acknowledgments';
 import Faq from '@/pages/Faq';
@@ -20,7 +20,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory('/'),
+    history: createWebHashHistory(window.location.hostname === 'unknowncollections.github.io' ? '/ExponentialIdle-SaveGameEditor/' : undefined),
     routes,
     linkActiveClass: 'active'
 });

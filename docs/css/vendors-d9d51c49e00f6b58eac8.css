@@ -1,7 +1,7 @@
 @font-face {
   font-family: "bootstrap-icons";
-  src: url(/fonts/bootstrap-icons-dfd0ea122577eb61795f.woff2?856008caa5eb66df68595e734e59580d) format("woff2"),
-url(/fonts/bootstrap-icons-94eeade15e6b7fbed95b.woff?856008caa5eb66df68595e734e59580d) format("woff");
+  src: url(../fonts/bootstrap-icons-dfd0ea122577eb61795f.woff2?856008caa5eb66df68595e734e59580d) format("woff2"),
+url(../fonts/bootstrap-icons-94eeade15e6b7fbed95b.woff?856008caa5eb66df68595e734e59580d) format("woff");
 }
 
 [class^="bi-"]::before,
@@ -1390,4 +1390,4 @@ url(/fonts/bootstrap-icons-94eeade15e6b7fbed95b.woff?856008caa5eb66df68595e734e5
 .bi-safe::before { content: "\f65a"; }
 
 
-/*# sourceMappingURL=vendors-cb7bf08bcd14dc3639e4.css.map*/
+/*# sourceMappingURL=vendors-d9d51c49e00f6b58eac8.css.map*/

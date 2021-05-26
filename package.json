@@ -7,7 +7,7 @@
     "author": "Anonymous",
     "license": "Unlicense",
     "scripts": {
-        "serve": "serve dist --single --cors -l 8080",
+        "serve": "serve docs --single --cors -l 8080",
         "watch": "webpack watch",
         "build": "webpack --mode=production",
         "oss": "license-checker-rseidelsohn --json --out src/data/oss.json --direct --excludePrivatePackages --relativeLicensePath --relativeModulePath --includePackages @babel/core;@babel/plugin-transform-runtime;@babel/preset-env;@popperjs/core;@vue/compiler-sfc;autoprefixer;babel-loader;bootstrap;bootstrap-icons;bootswatch;clean-webpack-plugin;css-loader;decimal.js;favicons;favicons-webpack-plugin;file-loader;html-webpack-plugin;javascript-obfuscator;license-checker-rseidelsohn;mini-css-extract-plugin;node-forge;pako;postcss;postcss-loader;raw-loader;resource-hints-webpack-plugin;sass;sass-loader;serve;url-loader;uuid;vue;vue-loader;vue-router;webpack;webpack-cli;webpack-obfuscator"
