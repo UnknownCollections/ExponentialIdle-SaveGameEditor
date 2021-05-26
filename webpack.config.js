@@ -133,7 +133,7 @@ function generateConfig(isProduction) {
             index: path.resolve(__dirname, 'src/index.js'),
         },
         output: {
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, isProduction ? 'docs': 'dist'),
             filename: isProduction ? 'js/[name]-[contenthash].js' : 'js/[name].js',
         },
         module: {
