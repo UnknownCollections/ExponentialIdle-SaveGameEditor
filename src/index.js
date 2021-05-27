@@ -1,3 +1,5 @@
+import 'core-js';
+import 'regenerator-runtime/runtime';
 import { createApp, reactive } from 'vue';
 import App from '@/App';
 import '@/styles/index.scss';

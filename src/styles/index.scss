@@ -1,31 +1,8 @@
 @import "~@/styles/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/superhero/bootswatch";
-@import "~bootstrap-icons/font/bootstrap-icons.css";
 
-body:before {
-    content: "Loading...\00000a\00000aThis application requires a modern browser to function properly.\00000a\00000aIf you see this message for an extended period of time, your browser may not be supported!";
-    white-space: pre-wrap;
-    font-size: 32px;
-    font-weight: bold;
-    text-align: center;
-    background-color: black;
-    color: white;
-}
-
-body.loaded:before {
-    content: none;
-}
-
-:root {
-    color-scheme: dark;
-}
-
-html{
-    height: 100%;
-}
 body {
-    height: 100%;
     display: flex;
     flex-direction: column;
 }

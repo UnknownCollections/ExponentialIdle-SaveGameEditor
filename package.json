@@ -7,10 +7,11 @@
     "author": "Anonymous",
     "license": "Unlicense",
     "scripts": {
-        "serve": "serve docs --single --cors -l 8080",
+        "serve-prod": "serve docs --single --cors -l 8080",
+        "serve": "serve dist --single --cors -l 8080",
         "watch": "webpack watch",
-        "build": "webpack --mode=production",
-        "oss": "license-checker-rseidelsohn --json --out src/data/oss.json --direct --excludePrivatePackages --relativeLicensePath --relativeModulePath --includePackages @babel/core;@babel/plugin-transform-runtime;@babel/preset-env;@popperjs/core;@vue/compiler-sfc;autoprefixer;babel-loader;bootstrap;bootstrap-icons;bootswatch;clean-webpack-plugin;css-loader;decimal.js;favicons;favicons-webpack-plugin;file-loader;html-webpack-plugin;javascript-obfuscator;license-checker-rseidelsohn;mini-css-extract-plugin;node-forge;pako;postcss;postcss-loader;raw-loader;resource-hints-webpack-plugin;sass;sass-loader;serve;url-loader;uuid;vue;vue-loader;vue-router;webpack;webpack-cli;webpack-obfuscator"
+        "build": "webpack --mode=production --progress",
+        "oss": "license-checker-rseidelsohn --json --out src/data/oss.json --direct --excludePrivatePackages --relativeLicensePath --relativeModulePath --includePackages @babel/core;@babel/plugin-transform-runtime;@babel/preset-env;@popperjs/core;@vue/compiler-sfc;autoprefixer;babel-loader;bootstrap;bootstrap-icons;bootswatch;clean-webpack-plugin;css-loader;decimal.js;favicons;favicons-webpack-plugin;file-loader;html-webpack-plugin;javascript-obfuscator;mini-css-extract-plugin;node-forge;pako;postcss;postcss-loader;raw-loader;resource-hints-webpack-plugin;sass;sass-loader;url-loader;uuid;vue;vue-loader;vue-router;webpack;webpack-cli;webpack-obfuscator;core-js"
     },
     "dependencies": {
         "@babel/core": "^7.14.2",
@@ -24,6 +25,7 @@
         "bootstrap-icons": "^1.5.0",
         "bootswatch": "^5.0.1",
         "clean-webpack-plugin": "^4.0.0-alpha.0",
+        "core-js": "^3.13.0",
         "css-loader": "^5.2.4",
         "decimal.js": "^10.2.1",
         "favicons": "^6.2.2",
@@ -31,7 +33,6 @@
         "file-loader": "^6.2.0",
         "html-webpack-plugin": "^5.3.1",
         "javascript-obfuscator": "^2.13.0",
-        "license-checker-rseidelsohn": "^1.2.2",
         "mini-css-extract-plugin": "^1.6.0",
         "node-forge": "^0.10.0",
         "pako": "^2.0.3",
@@ -41,7 +42,6 @@
         "resource-hints-webpack-plugin": "^0.0.2",
         "sass": "^1.32.13",
         "sass-loader": "^11.1.1",
-        "serve": "^11.3.2",
         "url-loader": "^4.1.1",
         "uuid": "^8.3.2",
         "vue": "^3.0.11",
@@ -50,5 +50,9 @@
         "webpack": "^5.37.1",
         "webpack-cli": "^4.7.0",
         "webpack-obfuscator": "^3.3.1"
+    },
+    "devDependencies": {
+        "license-checker-rseidelsohn": "^1.2.2",
+        "serve": "^11.3.2"
     }
 }

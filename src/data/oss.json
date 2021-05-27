@@ -82,6 +82,12 @@
         "path": "node_modules\\clean-webpack-plugin",
         "licenseFile": "node_modules\\clean-webpack-plugin\\LICENSE"
     },
+    "core-js@3.13.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/zloirock/core-js",
+        "path": "node_modules\\core-js",
+        "licenseFile": "node_modules\\core-js\\LICENSE"
+    },
     "css-loader@5.2.4": {
         "licenses": "MIT",
         "repository": "https://github.com/webpack-contrib/css-loader",
@@ -136,14 +142,6 @@
         "publisher": "Timofey Kachalov",
         "path": "node_modules\\javascript-obfuscator",
         "licenseFile": "node_modules\\javascript-obfuscator\\LICENSE.BSD"
-    },
-    "license-checker-rseidelsohn@1.2.2": {
-        "licenses": "BSD-3-Clause",
-        "repository": "https://github.com/RSeidelsohn/license-checker-rseidelsohn",
-        "publisher": "Roman Seidelsohn",
-        "email": "rseidelsohn@gmail.com",
-        "path": "node_modules\\license-checker-rseidelsohn",
-        "licenseFile": "node_modules\\license-checker-rseidelsohn\\LICENSE"
     },
     "mini-css-extract-plugin@1.6.0": {
         "licenses": "MIT",
@@ -214,13 +212,6 @@
         "url": "https://github.com/nex3",
         "path": "node_modules\\sass",
         "licenseFile": "node_modules\\sass\\LICENSE"
-    },
-    "serve@11.3.2": {
-        "licenses": "MIT",
-        "repository": "https://github.com/zeit/serve",
-        "publisher": "leo",
-        "path": "node_modules\\serve",
-        "licenseFile": "node_modules\\serve\\LICENSE"
     },
     "url-loader@4.1.1": {
         "licenses": "MIT",

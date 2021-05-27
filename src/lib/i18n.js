@@ -1,5 +1,5 @@
 import variables from '@/data/variables.json';
-const data = (await import(/* webpackChunkName: 'i18n' */ '@/data/i18n.json')).default;
+const data = (await import(/* webpackChunkName: 'i18n' */ '@/data/i18n.min.json')).default;
 
 export class I18n {
     lang = 'en';

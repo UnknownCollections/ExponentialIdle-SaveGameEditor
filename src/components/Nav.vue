@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse mt-3 mt-md-0">
                 <div class="navbar-nav ms-auto">
                     <router-link v-for="route of routes" :to="route.path" class="nav-link">{{ i18n.get(route.name) }}</router-link>
-                    <a :href="repo" target="_blank" class="nav-link">Source Code</a>
+                    <a rel="noopener" :href="repo" target="_blank" class="nav-link">Source Code</a>
                 </div>
             </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" ref="mobileNav">
@@ -20,7 +20,7 @@
                     <hr class="mt-0" />
                     <div class="navbar-nav ms-auto">
                         <router-link v-for="route of routes" :to="route.path" class="nav-link" @click="this.mobileNav.hide()">{{ i18n.get(route.name) }}</router-link>
-                        <a :href="repo" target="_blank" class="nav-link" @click="this.mobileNav.hide()">Source Code</a>
+                        <a rel="noopener" :href="repo" target="_blank" class="nav-link" @click="this.mobileNav.hide()">Source Code</a>
                     </div>
                 </div>
             </div>

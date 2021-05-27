@@ -9,7 +9,7 @@ import { default as CALCULATOR_CODE } from 'raw-loader!@/lib/third-party/1ekf/Ex
 
 const tio = new Tio('mathematica', 'https://tio.run/cgi-bin/static/fb67788fd3d1ebf92e66b295525335af-run/');
 
-const RE_FIND_NUMBERFORM = new RegExp(/^ {(?<variable>.+?), NumberForm\[(?<level>\d+),/);
+const RE_FIND_NUMBERFORM = /^ {(?<variable>.+?), NumberForm\[(?<level>\d+),/;
 
 export function parseStarCalculation(data) {
     const grid = data.split('\n').filter(l => l.startsWith('Grid'))[0];
@@ -34,12 +34,12 @@ export class SigmaResearch {
     static MAKE_DECIMAL = d => Decimal.isDecimal(d) ? d : new Decimal(d);
     static LINEAR_COST_MODEL = (i, p) => l => Math.floor(i + l * p);
     static DEFAULT_COST_MODEL = SigmaResearch.LINEAR_COST_MODEL(1, 0.5);
-    RESEARCHES = {
+    researches = {
         0: {
             level: 0,
             max: Infinity,
             costFn: SigmaResearch.DEFAULT_COST_MODEL,
-            multiplier: (dt, lhs, lvl) => lhs.times(dt.pow(lvl)),
+            apply: (dt, lhs, lvl) => lhs.times(dt.pow(lvl)),
         },
         1: {
             level: 0,
@@ -90,17 +90,17 @@ export class SigmaResearch {
         this.db = this.ftE.pow(0.8).dividedBy(4e6);
         this.dpsi = SigmaResearch.D2.pow(this.ftEE.dividedBy(25).minus(1)).minus(0.5);
 
-        this.RESEARCHES[0].apply = this.RESEARCHES[0].apply.bind(undefined, this.dt);
-        this.RESEARCHES[1].apply = this.RESEARCHES[1].apply.bind(undefined, this.t);
-        this.RESEARCHES[2].apply = this.RESEARCHES[2].apply.bind(undefined, this.stars);
-        this.RESEARCHES[3].apply = this.RESEARCHES[3].apply.bind(undefined, this.db);
-        this.RESEARCHES[4].apply = this.RESEARCHES[4].apply.bind(undefined, this.ftE);
-        this.RESEARCHES[5].apply = this.RESEARCHES[5].apply.bind(undefined, this.dpsi);
+        this.researches[0].apply = this.researches[0].apply.bind(undefined, this.dt);
+        this.researches[1].apply = this.researches[1].apply.bind(undefined, this.t);
+        this.researches[2].apply = this.researches[2].apply.bind(undefined, this.stars);
+        this.researches[3].apply = this.researches[3].apply.bind(undefined, this.db);
+        this.researches[4].apply = this.researches[4].apply.bind(undefined, this.ftE);
+        this.researches[5].apply = this.researches[5].apply.bind(undefined, this.dpsi);
     }
 
     calculateTotalMultiplier(modifyResearchId) {
         let multiplier = new Decimal(1);
-        for (const [researchId, research] of Object.entries(this.RESEARCHES)) {
+        for (const [researchId, research] of Object.entries(this.researches)) {
             const level = research.level + (modifyResearchId === researchId);
             if (level > 0) {
                 multiplier = research.apply(multiplier, level);
@@ -110,7 +110,7 @@ export class SigmaResearch {
     }
 
     distributeSigma(availableSigma) {
-        Object.values(this.RESEARCHES).forEach(r => r.level = 0);
+        Object.values(this.researches).forEach(r => r.level = 0);
 
         let sigmaUsed = 0;
         while (availableSigma - sigmaUsed > 0) {
@@ -122,7 +122,7 @@ export class SigmaResearch {
 
             const thisPhiValue = Decimal.log10(this.calculateTotalMultiplier());
 
-            for (const [researchId, research] of Object.entries(this.RESEARCHES)) {
+            for (const [researchId, research] of Object.entries(this.researches)) {
                 if (research.level === research.max) {
                     // This research is max rank, can't upgrade
                     continue;
@@ -138,7 +138,7 @@ export class SigmaResearch {
                 const phiPerSigma = nextPhiValue.minus(thisPhiValue).dividedBy(currentLevelCost);
 
                 console.debug(JSON.stringify({
-                    levels: Object.entries(this.RESEARCHES).map(([id, r]) => r.level + (id === researchId)),
+                    levels: Object.entries(this.researches).map(([id, r]) => r.level + (id === researchId)),
                     phi: phiPerSigma.toExponential(4)
                 }));
 
@@ -157,13 +157,13 @@ export class SigmaResearch {
             }
 
             sigmaUsed += nextBestUpgrade.cost;
-            this.RESEARCHES[nextBestUpgrade.researchId].level++;
+            this.researches[nextBestUpgrade.researchId].level++;
         }
 
         if (availableSigma - sigmaUsed > 0) {
             console.warn(`Did not use ${availableSigma - sigmaUsed} sigma`);
         }
 
-        return Object.entries(this.RESEARCHES).map(([id, r]) => ({id, level: r.level}));
+        return Object.entries(this.researches).map(([id, r]) => ({id, level: r.level}));
     }
 }

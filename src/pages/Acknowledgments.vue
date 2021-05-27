@@ -45,43 +45,43 @@
                             <h5>Exponential Idle game by <kbd>Gilles-Philippe Paillé @ Conic Games</kbd></h5>
                             <p>
                                 Download and play the game at:<br />
-                                <a href="https://conicgames.github.io/exponentialidle/index.html">https://conicgames.github.io/exponentialidle/index.html</a>
+                                <a rel="noopener" href="https://conicgames.github.io/exponentialidle/index.html">https://conicgames.github.io/exponentialidle/index.html</a>
                             </p>
-                            <p>Reddit Community: <a href="https://www.reddit.com/r/ExponentialIdle" target="_blank">https://www.reddit.com/r/ExponentialIdle</a>
+                            <p>Reddit Community: <a rel="noopener" href="https://www.reddit.com/r/ExponentialIdle" target="_blank">https://www.reddit.com/r/ExponentialIdle</a>
                             </p>
-                            <p>Discord Community: <a href="https://discord.gg/S9UheTC" target="_blank">https://discord.gg/S9UheTC</a></p>
+                            <p>Discord Community: <a rel="noopener" href="https://discord.gg/S9UheTC" target="_blank">https://discord.gg/S9UheTC</a></p>
                             <hr />
                             <h5>Permanent level star optimizer by <kbd>Eaux Tacous#1021</kbd></h5>
                             <p>
                                 Another implementation of the optimizer here:<br />
-                                <a href="https://conicgames.github.io/exponentialidle/stars.html" target="_blank">https://conicgames.github.io/exponentialidle/stars.html</a>
+                                <a rel="noopener" href="https://conicgames.github.io/exponentialidle/stars.html" target="_blank">https://conicgames.github.io/exponentialidle/stars.html</a>
                             </p>
                             <p>
                                 Optimizer code repository here:<br />
-                                <a href="https://github.com/1ekf/ExidleStars" target="_blank">https://github.com/1ekf/ExidleStars</a>
+                                <a rel="noopener" href="https://github.com/1ekf/ExidleStars" target="_blank">https://github.com/1ekf/ExidleStars</a>
                             </p>
                             <p>
                                 Optimizer code license here:<br />
-                                <a href="https://github.com/1ekf/ExidleStars/blob/main/LICENSE" target="_blank">https://github.com/1ekf/ExidleStars/blob/main/LICENSE</a>
+                                <a rel="noopener" href="https://github.com/1ekf/ExidleStars/blob/main/LICENSE" target="_blank">https://github.com/1ekf/ExidleStars/blob/main/LICENSE</a>
                             </p>
                             <hr />
                             <h5>Referenced the student optimizer by <kbd>Niedzielan</kbd></h5>
                             <p>
                                 Another implementation of the optimizer here:<br />
-                                <a href="https://conicgames.github.io/exponentialidle/students.html" target="_blank">https://conicgames.github.io/exponentialidle/students.html</a>
+                                <a rel="noopener" href="https://conicgames.github.io/exponentialidle/students.html" target="_blank">https://conicgames.github.io/exponentialidle/students.html</a>
                             </p>
                             <p>
                                 Optimizer code repository here:<br />
-                                <a href="https://github.com/Niedzielan/ExponentialIdleStudentOptimiser" target="_blank">https://github.com/Niedzielan/ExponentialIdleStudentOptimiser</a>
+                                <a rel="noopener" href="https://github.com/Niedzielan/ExponentialIdleStudentOptimiser" target="_blank">https://github.com/Niedzielan/ExponentialIdleStudentOptimiser</a>
                             </p>
                             <p>
                                 Optimizer code license here:<br />
-                                <a href="https://github.com/Niedzielan/ExponentialIdleStudentOptimiser/blob/main/LICENSE" target="_blank">https://github.com/Niedzielan/ExponentialIdleStudentOptimiser/blob/main/LICENSE</a>
+                                <a rel="noopener" href="https://github.com/Niedzielan/ExponentialIdleStudentOptimiser/blob/main/LICENSE" target="_blank">https://github.com/Niedzielan/ExponentialIdleStudentOptimiser/blob/main/LICENSE</a>
                             </p>
                             <hr />
                             <p>
-                                Favicon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from
-                                <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                                Favicon made by <a rel="noopener" href="https://www.freepik.com" title="Freepik">Freepik</a> from
+                                <a rel="noopener" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
                             </p>
                             <hr />
                             <h5>Use the donate features in-game to support the game developer!</h5>
@@ -113,7 +113,7 @@
                             <ul>
                                 <li v-if="details.publisher"><strong>Author:</strong> {{ details.publisher }}</li>
                                 <li><strong>License:</strong> {{ details.licenses }}</li>
-                                <li v-if="details.repository"><strong>Repository:</strong> <a :href="details.repository" target="_blank">{{ details.repository }}</a></li>
+                                <li v-if="details.repository"><strong>Repository:</strong> <a rel="noopener" :href="details.repository" target="_blank">{{ details.repository }}</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -32,6 +32,8 @@ function generateConfig(isProduction) {
                     '@babel/preset-env', {
                     targets: isProduction ? '> 0.25%, not dead' : {chrome: '89'},
                     shippedProposals: !isProduction,
+                    useBuiltIns: isProduction ? 'entry' : isProduction,
+                    corejs: isProduction ? '3.13.0' : undefined
                 },
                 ],
             ],
@@ -48,7 +50,7 @@ function generateConfig(isProduction) {
             deadCodeInjection: true,
             deadCodeInjectionThreshold: 1.0,
             debugProtection: true,
-            debugProtectionInterval: true,
+            debugProtectionInterval: false,
             identifierNamesGenerator: 'mangled-shuffled',
             numbersToExpressions: true,
             rotateStringArray: true,
@@ -122,7 +124,7 @@ function generateConfig(isProduction) {
 
     return {
         mode: isProduction ? 'production' : 'development',
-        devtool: isProduction ? 'nosources-source-map' : 'source-map',
+        devtool: isProduction ? false : 'source-map',
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, 'src'),
@@ -163,12 +165,15 @@ function generateConfig(isProduction) {
             new HtmlWebpackPlugin({
                 title: 'Exponential Idle - Save Game Editor',
                 xhtml: true,
-                hash: isProduction,
+                inject: 'body',
+                description: PACKAGE.description,
+                template: path.resolve(__dirname, 'src/index.html'),
+                hash: false,
             }),
             new FaviconsWebpackPlugin({
                 logo: path.resolve(__dirname, 'src/styles/favicon.svg'),
                 cache: !isProduction,
-                prefix: '/',
+                prefix: '',
                 favicons: {
                     appName: PACKAGE.name,
                     developerName: PACKAGE.author,
