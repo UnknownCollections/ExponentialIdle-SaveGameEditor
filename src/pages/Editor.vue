@@ -1,28 +1,72 @@
 <template>
     <importer v-model="encodedSaveGame" :rows="loaded ? 3 : 6" />
 
-    <div class="btn-group mb-3 d-flex">
+    <div class="btn-group mb-4 d-flex">
         <button type="button" class="btn btn-lg btn-outline-secondary text-white border-top-0 w-100 text-center" @click="paste">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard me-1 pb-1" viewBox="0 0 16 16">
-                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                <path
+                    d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                <path
+                    d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
             </svg>
             Paste
         </button>
         <button type="button" class="btn btn-lg btn-outline-secondary text-white border-top-0 w-100" v-if="loaded" @click="update">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-save me-1 pb-1" viewBox="0 0 16 16">
-                <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                <path
+                    d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z" />
             </svg>
             Save
         </button>
         <button type="button" class="btn btn-lg btn-outline-secondary text-white border-top-0 w-100" v-if="loaded" @click="copy">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard-plus me-1 pb-1" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
-                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />
+                <path
+                    d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                <path
+                    d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
             </svg>
             Copy
         </button>
+    </div>
+
+    <div class="row mb-3" v-if="!firstTimeUser || loaded">
+        <div class="col-12">
+            <div class="card bg-dark text-white">
+                <div class="card-header d-flex align-items-center" @click="toggle">
+                    Quick Actions
+                    <button type="button" class="btn btn-link text-info p-0 ms-2 d-flex align-items-center" ref="quickActionsHelp">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                        </svg>
+                    </button>
+                    <div ref="quickActionsHelpTooltip" class="text-start">
+                        Quick Actions will automatically:<br/>
+                        <ol>
+                            <li>Load your save from the clipboard</li>
+                            <li>Apply the action</li>
+                            <li>Save the changes</li>
+                            <li>Copy the save back to the clipboard</li>
+                        </ol>
+                        <strong>Make sure to keep a copy of your save somewhere, just in case!</strong>
+                    </div>
+                </div>
+                <div class="card-body btn-group d-flex p-0">
+                    <button type="button" class="btn btn-lg btn-outline-secondary text-white w-100 text-center" @click="auto($event, addWeek)">
+                        +1 Offline Week
+                    </button>
+                    <button type="button" class="btn btn-lg btn-outline-secondary text-white w-100 text-center" @click="auto($event, optimizeStars)">
+                        Auto Stars
+                    </button>
+                    <button type="button" class="btn btn-lg btn-outline-secondary text-white w-100 text-center"
+                            @click="auto($event, optimizeStudents)">
+                        Auto Students
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row" v-if="loaded">
@@ -110,13 +154,18 @@
                 <template #content>
                     <button class="btn btn-primary btn-lg w-100 mb-3" @click="optimizeStars">Optimize {{ i18n.get('AchievementCatStars') }}</button>
                     <div class="alert alert-dark d-flex align-items-center p-2 small">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle text-warning mx-2 mb-0" viewBox="0 0 16 16">
-                            <path
-                                d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
-                            <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
-                        </svg>
                         <div>
-                            Changing the below values does not automatically update the amount of used stars. Use the <kbd>Optimize {{ i18n.get('AchievementCatStars') }}</kbd> button above instead.
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-exclamation-triangle text-warning mx-2 mb-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                            </svg>
+                        </div>
+                        <div>
+                            Changing the below values does not automatically update the amount of used stars. Use the <kbd>Optimize {{
+                                i18n.get('AchievementCatStars')
+                            }}</kbd> button above instead.
                         </div>
                     </div>
                     <dynamic-input
@@ -143,13 +192,18 @@
                 <template #content>
                     <button class="btn btn-primary btn-lg w-100 mb-3" @click="optimizeStudents">Optimize {{ i18n.get('StudentsName') }}</button>
                     <div class="alert alert-dark d-flex align-items-center p-2 small">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle text-warning mx-2 mb-0" viewBox="0 0 16 16">
-                            <path
-                                d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
-                            <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
-                        </svg>
                         <div>
-                            Changing the below values does not automatically update the amount of used students. Use the <kbd>Optimize {{ i18n.get('StudentsName') }}</kbd> button above instead.
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-exclamation-triangle text-warning mx-2 mb-0" viewBox="0 0 16 16">
+                                <path
+                                    d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                            </svg>
+                        </div>
+                        <div>
+                            Changing the below values does not automatically update the amount of used students. Use the <kbd>Optimize {{
+                                i18n.get('StudentsName')
+                            }}</kbd> button above instead.
                         </div>
                     </div>
                     <dynamic-input v-model="saveData.data.Research.BoughtLevel0">
@@ -368,6 +422,7 @@
     import TheoryInput from '@/components/TheoryInput';
     import Importer from '@/components/Importer';
     import { calculateStars, parseStarCalculation, SigmaResearch } from '@/lib/optimizers';
+    import { Tooltip } from 'bootstrap';
 
     const preloadSaveGame = await (async () => {
         if (__DEBUG__) {
@@ -386,6 +441,7 @@
                     numeric: true,
                     sensitivity: 'base',
                 }),
+                firstTimeUser: localStorage.getItem('RETURNING_USER') === null,
             };
         },
         computed: {
@@ -423,8 +479,10 @@
                 } else {
                     try {
                         this.saveData.load(this.encodedSaveGame);
+                        localStorage.setItem('RETURNING_USER', '1');
                     } catch (e) {
-                        console.error(e);
+                        console.debug(e);
+                        console.error(`Unable to load save game: ${e.name}`);
                         this.saveData.clear();
                     }
                 }
@@ -434,12 +492,18 @@
             if (this.encodedSaveGame) {
                 try {
                     this.saveData.load(this.encodedSaveGame);
+                    localStorage.setItem('RETURNING_USER', '1');
                 } catch (e) {
                     this.encodedSaveGame = '';
-                    console.error(e);
+                    console.debug(e);
+                    console.error(`Unable to load save game: ${e.name}`);
                     this.saveData.clear();
                 }
             }
+            new Tooltip(this.$refs.quickActionsHelp, {
+                title: this.$refs.quickActionsHelpTooltip.parentElement.removeChild(this.$refs.quickActionsHelpTooltip),
+                html: true,
+            });
         },
         methods: {
             async acquirePermission(permission) {
@@ -455,31 +519,84 @@
                 const currentlyUnlockedTheoryCount = Object.values(this.saveData.data.Theory).reduce((a, t) => a + t.includes('L1;'), 0);
                 this.saveData.data.Researches.MaxUnlockedTheories = Math.max(this.saveData.data.Researches.MaxUnlockedTheories, currentlyUnlockedTheoryCount);
             },
-            async paste() {
+            async fromClipboard() {
                 if (!navigator.clipboard || !(await this.acquirePermission('clipboard-read'))) {
                     console.error('Automatic paste functionality is not enabled in your browser.');
-                    return;
+                    return false;
                 }
                 try {
-                    this.encodedSaveGame = await navigator.clipboard.readText();
-                    console.info('Save game loaded from clipboard.');
+                    return await navigator.clipboard.readText();
                 } catch (e) {
                     console.error(`Automatic paste failed: ${e}`);
+                }
+                return false;
+            },
+            async toClipboard(value) {
+                if (!navigator.clipboard || !(await this.acquirePermission('clipboard-write'))) {
+                    console.error('Automatic copy functionality is not enabled in your browser.');
+                    return false;
+                }
+                try {
+                    await navigator.clipboard.writeText(value);
+                    return true;
+                } catch (e) {
+                    console.error(`Automatic copy failed: ${e}`);
+                }
+                return false;
+            },
+            async paste() {
+                const clipboardContents = await this.fromClipboard();
+                if (clipboardContents) {
+                    this.encodedSaveGame = clipboardContents;
+                    await this.$nextTick(() => {
+                        if (this.loaded) {
+                            console.info('Save game loaded from clipboard.');
+                        }
+                    });
                 }
             },
             update() {
                 this.encodedSaveGame = this.saveData.save();
             },
             async copy() {
-                if (!navigator.clipboard || !(await this.acquirePermission('clipboard-write'))) {
-                    console.error('Automatic copy functionality is not enabled in your browser.');
+                if (await this.toClipboard(this.encodedSaveGame)) {
+                    console.info('Save game copied to clipboard.');
+                }
+            },
+            async auto(e, fn) {
+                const clipboardContents = await this.fromClipboard();
+                if (!clipboardContents) {
+                    console.error('No save data found in clipboard');
                     return;
                 }
+                const previousData = this.loaded ? this.saveData.save() : false;
                 try {
-                    await navigator.clipboard.writeText(this.encodedSaveGame);
-                    console.info('Save game copied to clipboard.');
+                    this.saveData.load(clipboardContents);
+                    await fn.call(this, e);
+                    const modifiedData = this.saveData.save();
+                    if (await this.toClipboard(modifiedData)) {
+                        console.log('Action applied, clipboard updated');
+                    }
                 } catch (e) {
-                    console.error(`Automatic copy failed: ${e}`);
+                    console.debug(e);
+                    console.error('Unable to automatically modify save game');
+                } finally {
+                    if (previousData) {
+                        this.saveData.load(previousData);
+                    } else {
+                        this.saveData.clear();
+                    }
+                }
+            },
+            async addWeek(e) {
+                e.target.disabled = true;
+                try {
+                    this.saveData.data.Session.SessionClosedTimeUtc = new Date(
+                        this.saveData.data.Session.SessionClosedTimeUtc.getTime() - (604_800_000)
+                    );
+                    console.info(`Game will now calculate offline progress since ${this.saveData.data.Session.SessionClosedTimeUtc.toLocaleString()}`);
+                } finally {
+                    e.target.disabled = false;
                 }
             },
             async optimizeStars(e) {
@@ -556,8 +673,7 @@
                     }
 
                     // t, ftEE, dt, stars, dtBonus, isAccelerating, accelerationBonus
-                    const optimizer = new SigmaResearch(
-                        this.saveData.data.Time.Value.toString(),
+                    const optimizer = new SigmaResearch(this.saveData.data.Time.Value.toString(),
                         ftSize,
                         this.saveData.data.Time.Delta.toString(),
                         totalStars,

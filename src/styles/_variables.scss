@@ -10,3 +10,7 @@ $link-color: #05fad9;
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/utilities";
+
+$tooltip-padding-y: $spacer;
+$tooltip-padding-x: $spacer;
+$tooltip-max-width: max(25vw, 300px);

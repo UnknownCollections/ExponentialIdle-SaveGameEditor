@@ -10,3 +10,7 @@ body {
 .c-pointer {
     cursor: if($enable-button-pointers, pointer, null);
 }
+
+svg {
+    margin-bottom: 1px;
+}

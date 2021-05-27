@@ -130,7 +130,7 @@ export class Parser {
             }
             return parsedVal;
         } catch (e) {
-            console.error(e);
+            console.debug(e);
             return val;
         }
     }
@@ -157,7 +157,7 @@ export class Parser {
             }
             return JSON.stringify(val);
         } catch (e) {
-            console.error(e);
+            console.debug(e);
             return JSON.stringify(val);
         }
     }

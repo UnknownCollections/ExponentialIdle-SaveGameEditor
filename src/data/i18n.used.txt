@@ -17,10 +17,14 @@
 ^MainPageUpgrades
 ^MathExpFunction
 ^MathExpPrevValueOf
+^Minigame1
+^Minigame2
 ^Minigame3
 ^Minigame4
 ^MinigameArrowGameDescription
+^MinigameArrowGameTitle
 ^PublicationPopupMilestones
+^PublicationPopupPublish
 ^ResearchTheoryMultiplierTitle
 ^RewardsPopupPermTitle
 ^SettingsPopupInstrB

@@ -57,7 +57,8 @@ export class BigNumber {
                 exponent = Math.abs(val);
             }
         } catch (e) {
-            console.error(e);
+            console.debug(e);
+            console.error(`Unable to parse BigNumber: ${e.name}`);
             this.sign = 0;
             this.exponent = 0;
             this.depth = 0;
