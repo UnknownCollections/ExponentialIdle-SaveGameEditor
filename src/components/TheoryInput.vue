@@ -10,13 +10,13 @@
             <dynamic-input v-model="currencies">
                 <template #label>{{ i18n.get('InstructionsSectionTitle23') }}</template>
             </dynamic-input>
-            <dynamic-input v-for="(_, idx) of upgrades" v-model="upgrades[idx].level">
+            <dynamic-input v-for="(_, idx) of upgrades" v-model="upgrades[idx].level" @update:model-value="update">
                 <template #label>{{ i18n.get('MainPageUpgrades') }} #{{ idx + 1 }}</template>
             </dynamic-input>
-            <dynamic-input v-for="(_, idx) of permanentUpgrades" v-model="permanentUpgrades[idx].level">
+            <dynamic-input v-for="(_, idx) of permanentUpgrades" v-model="permanentUpgrades[idx].level" @update:model-value="update">
                 <template #label>{{ i18n.get('TheoryPanelPermanent') }} {{ i18n.get('MainPageUpgrades') }} #{{ idx + 1 }}</template>
             </dynamic-input>
-            <dynamic-input v-for="(_, idx) of milestoneUpgrades" v-model="milestoneUpgrades[idx].level">
+            <dynamic-input v-for="(_, idx) of milestoneUpgrades" v-model="milestoneUpgrades[idx].level" @update:model-value="update">
                 <template #label>{{ i18n.get('PublicationPopupMilestones') }} {{ i18n.get('MainPageUpgrades') }} #{{ idx + 1 }}</template>
             </dynamic-input>
             <dynamic-input v-model="totalMilestones">
@@ -62,15 +62,6 @@
                 this.update();
             },
             currencies() {
-                this.update();
-            },
-            upgrades() {
-                this.update();
-            },
-            permanentUpgrades() {
-                this.update();
-            },
-            milestoneUpgrades() {
                 this.update();
             },
             tau() {
