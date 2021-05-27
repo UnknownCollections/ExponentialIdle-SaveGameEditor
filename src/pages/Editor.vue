@@ -30,7 +30,7 @@
         </button>
     </div>
 
-    <div class="row mb-3" v-if="!firstTimeUser || loaded">
+    <div class="row mb-3" v-show="!firstTimeUser || loaded">
         <div class="col-12">
             <div class="card bg-dark text-white">
                 <div class="card-header d-flex align-items-center" @click="toggle">
@@ -481,6 +481,7 @@
                         this.saveData.load(this.encodedSaveGame);
                         localStorage.setItem('RETURNING_USER', '1');
                     } catch (e) {
+                        this.encodedSaveGame = '';
                         console.debug(e);
                         console.error(`Unable to load save game: ${e.name}`);
                         this.saveData.clear();
