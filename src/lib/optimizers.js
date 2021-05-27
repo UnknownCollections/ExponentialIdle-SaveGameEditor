@@ -1,4 +1,5 @@
 import { Tio } from '@/lib/tio';
+import { BigNumber } from '@/lib/bignumber';
 import Decimal from 'decimal.js';
 
 // https://github.com/1ekf/ExidleStars
@@ -12,8 +13,13 @@ const tio = new Tio('mathematica', 'https://tio.run/cgi-bin/static/fb67788fd3d1e
 const RE_FIND_NUMBERFORM = /^ {(?<variable>.+?), NumberForm\[(?<level>\d+),/;
 
 export function parseStarCalculation(data) {
-    const grid = data.split('\n').filter(l => l.startsWith('Grid'))[0];
-    return grid.split('},').slice(1, -1).map(v => v.match(RE_FIND_NUMBERFORM).groups);
+    const dataLines = data.split('\n');
+    const used = dataLines.filter(l => l.startsWith('stars used: '))[0];
+    const grid = dataLines.filter(l => l.startsWith('Grid'))[0];
+    return {
+        used: BigNumber.from(used.split(' ').pop()),
+        distribution: grid.split('},').slice(1, -1).map(v => v.match(RE_FIND_NUMBERFORM).groups)
+    };
 }
 
 export async function calculateStars(ft, stars, finalUpgradeLevel) {
@@ -137,11 +143,6 @@ export class SigmaResearch {
                 const nextPhiValue = Decimal.log10(this.calculateTotalMultiplier(researchId));
                 const phiPerSigma = nextPhiValue.minus(thisPhiValue).dividedBy(currentLevelCost);
 
-                console.debug(JSON.stringify({
-                    levels: Object.entries(this.researches).map(([id, r]) => r.level + (id === researchId)),
-                    phi: phiPerSigma.toExponential(4)
-                }));
-
                 if (phiPerSigma.greaterThan(nextBestUpgrade.phiPerSigma)) {
                     nextBestUpgrade.researchId = researchId;
                     nextBestUpgrade.phiPerSigma = phiPerSigma;
@@ -164,6 +165,16 @@ export class SigmaResearch {
             console.warn(`Did not use ${availableSigma - sigmaUsed} sigma`);
         }
 
-        return Object.entries(this.researches).map(([id, r]) => ({id, level: r.level}));
+        return Object.entries(this.researches).map(([id, research]) => {
+            let totalCost = 0;
+            for (let lvl = 0; lvl < research.level; lvl++) {
+                totalCost += research.costFn(lvl);
+            }
+            return {
+                id,
+                level: research.level,
+                totalCost
+            };
+        });
     }
 }

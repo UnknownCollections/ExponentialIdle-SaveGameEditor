@@ -109,6 +109,16 @@
                 </template>
                 <template #content>
                     <button class="btn btn-primary btn-lg w-100 mb-3" @click="optimizeStars">Optimize {{ i18n.get('AchievementCatStars') }}</button>
+                    <div class="alert alert-dark d-flex align-items-center p-2 small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle text-warning mx-2 mb-0" viewBox="0 0 16 16">
+                            <path
+                                d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                            <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                        </svg>
+                        <div>
+                            Changing the below values does not automatically update the amount of used stars. Use the <kbd>Optimize {{ i18n.get('AchievementCatStars') }}</kbd> button above instead.
+                        </div>
+                    </div>
                     <dynamic-input
                         v-for="key of Object.keys(saveData.data.Variable).filter(k => k.startsWith('FreeLevel')).sort(collator.compare).slice(1)"
                         v-model="saveData.data.Variable[key]"
@@ -132,6 +142,16 @@
                 </template>
                 <template #content>
                     <button class="btn btn-primary btn-lg w-100 mb-3" @click="optimizeStudents">Optimize {{ i18n.get('StudentsName') }}</button>
+                    <div class="alert alert-dark d-flex align-items-center p-2 small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle text-warning mx-2 mb-0" viewBox="0 0 16 16">
+                            <path
+                                d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                            <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                        </svg>
+                        <div>
+                            Changing the below values does not automatically update the amount of used students. Use the <kbd>Optimize {{ i18n.get('StudentsName') }}</kbd> button above instead.
+                        </div>
+                    </div>
                     <dynamic-input v-model="saveData.data.Research.BoughtLevel0">
                         <template #label>φ<sub>1</sub></template>
                     </dynamic-input>
@@ -349,13 +369,11 @@
     import Importer from '@/components/Importer';
     import { calculateStars, parseStarCalculation, SigmaResearch } from '@/lib/optimizers';
 
-    const LOCAL_STORAGE_SAVE_KEY = 'STORED_SAVE_GAME';
     const preloadSaveGame = await (async () => {
         if (__DEBUG__) {
             const testSaveGames = await import(/* webpackChunkName: 'encrypted_save_games' */ '@/data/tests/encrypted_save_games.json');
             return Array.from(testSaveGames).pop();
         }
-        return window.localStorage.getItem(LOCAL_STORAGE_SAVE_KEY);
     })();
 
     export default {
@@ -499,11 +517,14 @@
                         return;
                     }
 
-                    for (const [index, variableLevel] of parseStarCalculation(data).entries()) {
+                    const parsedData = parseStarCalculation(data);
+
+                    for (const [index, variableLevel] of parsedData.distribution.entries()) {
                         const level = parseInt(variableLevel.level);
                         this.saveData.data.Variable[`FreeLevel${index + 1}`] = level;
                         this.saveData.data.StarBonus[`Level${4000 + index + 1}`] = level;
                     }
+                    this.saveData.data.Stars.UsedAmount2 = parsedData.used;
                     console.info('Successfully updated all permenant variable levels');
                 } finally {
                     e.target.disabled = false;
@@ -523,9 +544,11 @@
                                        this.saveData.data.Stars.MinigameAmount2.toNumber();
 
                     const currentlyUnlockedTheoryCount = Object.values(this.saveData.data.Theory).reduce((a, t) => a + t.includes('L1;'), 0);
-                    const totalStudents = this.saveData.data.Students.Amount.toNumber() - [
+                    const purchasedTheoryCost = [
                         20, 5, 5, 5, 5, 5, 5, 5, 40,
                     ].slice(0, currentlyUnlockedTheoryCount).reduce((t, a) => t + a, 0);
+
+                    const totalStudents = this.saveData.data.Students.Amount.toNumber() - purchasedTheoryCost;
 
                     if (totalStudents === 0) {
                         console.error('Unable to calculate optimal students, you have no free students.');
@@ -543,9 +566,12 @@
                         1.0,
                     );
                     const distribution = optimizer.distributeSigma(totalStudents);
+                    let usedStudents = 0;
                     for (const research of Object.values(distribution)) {
+                        usedStudents += research.totalCost;
                         this.saveData.data.Research[`BoughtLevel${research.id}`] = research.level;
                     }
+                    this.saveData.data.Students.UsedAmount.parse((purchasedTheoryCost + usedStudents).toFixed(0));
                     console.info('Successfully optimized students.');
                 } finally {
                     e.target.disabled = false;
