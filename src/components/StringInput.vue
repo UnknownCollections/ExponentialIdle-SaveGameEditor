@@ -6,7 +6,7 @@
             </label>
         </div>
         <div class="col-auto flex-grow-1">
-            <input type="text" required class="form-control bg-dark text-white" :id="id" v-model.trim="value" />
+            <input type="text" class="form-control bg-dark text-white" :id="id" :name="id" v-model.trim="value" />
         </div>
         <div class="col-auto" v-if="$slots.help">
             <span class="form-text"><slot name="help"></slot></span>
@@ -31,6 +31,14 @@
                     return this.modelValue;
                 },
                 set(val) {
+                    const type = typeof val;
+                    if (type !== 'string') {
+                        if (type === 'undefined' || val === null) {
+                            val = '';
+                        } else {
+                            val = String(val).toString();
+                        }
+                    }
                     this.$emit('update:modelValue', val);
                 }
             }

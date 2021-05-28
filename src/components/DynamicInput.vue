@@ -26,33 +26,17 @@
     import NumberInput from '@/components/NumberInput';
     import StringInput from '@/components/StringInput';
     import { BigNumber } from '@/lib/bignumber';
+    import { markRaw } from 'vue';
 
     export default {
         name: 'DynamicInput',
         props: ['modelValue'],
+        data() {
+            return {
+                type: this.getComponentFor(this.modelValue),
+            }
+        },
         computed: {
-            type() {
-                const type = typeof this.value;
-                if (type === 'boolean') {
-                    return BooleanInput;
-                }
-                if (type === 'number') {
-                    return NumberInput;
-                }
-                if (type === 'string') {
-                    return StringInput;
-                }
-                if (Array.isArray(this.value)) {
-                    return ArrayInput;
-                }
-                if (this.value instanceof BigNumber) {
-                    return BigNumberInput;
-                }
-                if (this.value instanceof Date) {
-                    return DateInput;
-                }
-                return false;
-            },
             value: {
                 get() {
                     return this.modelValue;
@@ -62,5 +46,29 @@
                 },
             },
         },
+        methods: {
+            getComponentFor(val) {
+                const type = typeof val;
+                if (type === 'boolean') {
+                    return markRaw(BooleanInput);
+                }
+                if (type === 'number') {
+                    return markRaw(NumberInput);
+                }
+                if (type === 'string') {
+                    return markRaw(StringInput);
+                }
+                if (Array.isArray(val)) {
+                    return markRaw(ArrayInput);
+                }
+                if (val instanceof BigNumber) {
+                    return markRaw(BigNumberInput);
+                }
+                if (val instanceof Date) {
+                    return markRaw(DateInput);
+                }
+                return false;
+            }
+        }
     };
 </script>

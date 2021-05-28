@@ -7,7 +7,7 @@
         </div>
         <div class="col-auto">
             <div class="form-check form-switch">
-                <input class="form-check-input" required type="checkbox" :id="id" v-model="value">
+                <input class="form-check-input" type="checkbox" :id="id" :name="id" v-model="value">
             </div>
         </div>
         <div class="col-auto" v-if="$slots.help">
@@ -33,7 +33,7 @@
                     return this.modelValue;
                 },
                 set(val) {
-                    this.$emit('update:modelValue', val);
+                    this.$emit('update:modelValue', !!val);
                 }
             }
         },

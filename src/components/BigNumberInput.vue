@@ -6,7 +6,7 @@
             </label>
         </div>
         <div class="col-auto flex-grow-1">
-            <input type="text" class="form-control bg-dark text-white" required pattern="^(-|ee)?\d+\.?\d*(e\d+)?$" :id="id" v-model.trim="value" @blur="normalize" />
+            <input type="text" class="form-control bg-dark text-white" required pattern="^(-|ee)?\d+\.?\d*(e\d+)?$" :id="id" :name="id" v-model.trim="value" @blur="normalize" />
         </div>
         <div class="col-auto" v-if="$slots.help">
             <span class="form-text"><slot name="help"></slot></span>

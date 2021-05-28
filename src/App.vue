@@ -1,5 +1,5 @@
 <template>
-    <toaster :autohide="true" :delay="15000" />
+    <toaster :autohide="true" :delay="10000" />
 
     <main-nav />
 

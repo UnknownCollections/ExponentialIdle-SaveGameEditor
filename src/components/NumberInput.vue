@@ -6,7 +6,7 @@
             </label>
         </div>
         <div class="col-auto flex-grow-1">
-            <input type="text" required pattern="\d+" class="form-control bg-dark text-white" :id="id" v-model.number="value" />
+            <input type="text" required pattern="-?\d*\.{0,1}\d+" class="form-control bg-dark text-white" :id="id" :name="id" v-model.number="value" />
         </div>
         <div class="col-auto" v-if="$slots.help">
             <span class="form-text"><slot name="help"></slot></span>
@@ -31,6 +31,15 @@
                     return this.modelValue;
                 },
                 set(val) {
+                    if (val === '') {
+                        return;
+                    }
+                    if (typeof val !== 'number') {
+                        val = parseInt(val);
+                    }
+                    if (isNaN(val)) {
+                        return;
+                    }
                     this.$emit('update:modelValue', val);
                 }
             }
