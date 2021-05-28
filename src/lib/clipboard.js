@@ -38,7 +38,7 @@ export class Clipboard {
     }
 
     static async write(data) {
-        if (!await Clipboard.checkReadAccess()) {
+        if (!await Clipboard.checkWriteAccess()) {
             console.error('Your browser does not support native paste to clipboard');
             return false;
         }
