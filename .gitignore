@@ -1,6 +1,13 @@
 /dist
 /node_modules
 /.idea
+*.obfuscate.js
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 /yarn-debug.log
 /yarn-error.log
-*.obfuscate.js

@@ -24,10 +24,6 @@
         "Send a pull request with the <kbd>src/lib/i18n.json</kbd> file edited and proof that you are its author to remove your work."
     ],
     [
-        "I would like to add a language or fix some translations. Can I do that?",
-        "Contact the game owner and work with them to include your translations into the main game. Any translations added there, I will port."
-    ],
-    [
         "If I load and export a save without changing anything, the save data string changes. Why?",
         "Three main reasons:<ol><li>Date precision for milliseconds is less precise in the web browser versus the game. This doesn't really effect gameplay, but it prevents exact recreations of the save string.</li><li>Big number precision is less due to the web browser holding less decimal places in total. This doesn't really effect gameplay, but it prevents exact recreations of the save string.</li><li>Save game strings are compressed before they are encrypted. The game doesn't use the highest compression possible when exporting, this app does. The game can still load the higher compressed save strings so it's a win/win.</li></ol>"
     ],
@@ -37,7 +33,7 @@
     ],
     [
         "The app corrupted my save!",
-        "As clearly noted on the main page, this app is not responsible for any broken save. Therefore, make a backup of your save first."
+        "As noted on the main page, this app is not responsible for any broken save. Therefore, make a backup of your save first."
     ],
     [
         "The app froze my phone!",
@@ -49,11 +45,7 @@
     ],
     [
         "What are some practical, kinda-cheaty things you can do?",
-        "<ul><li>Change the current in-game time to speed through offline progress (maximum 1 week at a time).</li><li>Change the automation rate to be much faster than what the star bonus reward gives you. Careful; you might lag your game!</li><li>Unlock the minigames early because you fucking love minigames.</li><li>Unlock auto-buy for Theories you haven't even unlocked yet; skip the initial grind!</li><li>Change the default acceleration rate to act like you're always holding the acceleration button.</li></ul>"
-    ],
-    [
-        "What are some practical, super-cheaty things you can do?",
-        "This is a complete save game editor. Just give yourself a boatload of currencies, stars, upgrades, etc...Get an imagination!"
+        "<ul><li>Change the current in-game time to speed through offline progress (maximum 1 week at a time).</li><li>Change the automation rate to be much faster than what the star bonus reward gives you. Careful, you might lag your game!</li><li>Unlock the minigames early because you fucking love minigames.</li><li>Unlock auto-buy for Theories you haven't even unlocked yet; skip the initial grind!</li><li>Change the default acceleration rate to act like you're always holding the acceleration button.</li></ul>"
     ],
     [
         "What's the Raw Data section?",
@@ -65,6 +57,6 @@
     ],
     [
         "What about other games?",
-        "If the game works similarly (import/export of save games), and the game is interesting in its nature, send me an email."
+        "If the game works similarly (import/export of save games), and the game is interesting, send me an email."
     ]
 ]
