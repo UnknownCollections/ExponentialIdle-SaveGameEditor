@@ -1,4 +1,5 @@
 ^AchievementCatMinigames
+^AchievementCatPlayTime
 ^AchievementCatStars
 ^AchievementDesc
 ^AchievementPage1
