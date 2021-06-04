@@ -14,3 +14,7 @@ body {
 svg {
     margin-bottom: 1px;
 }
+
+kbd {
+    unicode-bidi: isolate;
+}

@@ -12,6 +12,10 @@
         "The obfuscated file is <kbd>crypto.js</kbd>. This is the file that handles the decryption, encryption, and in-game purchase verification.<br /><br />Yes, JavaScript obfuscation is reversible. Still, I believe that anyone who is successful at deobfuscation could decrypt the save games themselves anyway.<br /><br />Anyone wishing to have a closer look at this file for security purposes can contact me."
     ],
     [
+        "Why does this app potentially disallow me from participating in the leaderboard?",
+        "The Exponential Idle game developer requested that a flag be set on exported save games so that the leaderboard could remain reputable. The original request was to only enable this flag for cheaty save game edits. However, the implementation of obscurity doesn't allow the Crypto class to know if something cheaty, specifically, was edited. Any implementation where it could know would either require additional obfuscated sources files or laughable bypass opportunities. I didn't like either of those options, so I opted to flag all save games."
+    ],
+    [
         "Why did you make this open-source at all?",
         "It is my deepest hope that someone can use any or all of this code to learn something new."
     ],
@@ -20,8 +24,8 @@
         "The game has a beautiful language mechanism and a fantastic team of translators. Where possible, I tried to use game keywords so that this app could be automatically translated, even at a small cost of clarity."
     ],
     [
-        "I am one of the authors of one of the translations. Unfortunately, I do not want you to use my work. Can you remove it?",
-        "Send a pull request with the <kbd>src/lib/i18n.json</kbd> file edited and proof that you are its author to remove your work."
+        "I am the author of one of the translations. Unfortunately, I do not want you to use my work. Can you remove it?",
+        "Send a pull request with the <kbd>src/lib/i18n.csv</kbd> file edited and proof that you are its author to remove your work."
     ],
     [
         "If I load and export a save without changing anything, the save data string changes. Why?",

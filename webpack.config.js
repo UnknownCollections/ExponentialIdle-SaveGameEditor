@@ -210,7 +210,8 @@ function generateConfig(isProduction) {
         ],
         optimization: {
             moduleIds: 'deterministic',
-            runtimeChunk: 'single',
+            chunkIds: 'deterministic',
+            runtimeChunk: 'multiple',
             usedExports: true,
             splitChunks: {
                 cacheGroups: {

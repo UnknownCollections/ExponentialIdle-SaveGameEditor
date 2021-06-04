@@ -1,6 +1,6 @@
 {
     "name": "exponentialidle-savegameeditor",
-    "version": "1.4.17",
+    "version": "1.4.18",
     "description": "Save game editor for the Android and iOS game Exponential Idle",
     "main": "index.js",
     "repository": "https://github.com/UnknownCollections/ExponentialIdle-SaveGameEditor",

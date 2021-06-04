@@ -10,18 +10,29 @@ export class I18n {
         for (const lang of Object.keys(data)) {
             this.languages.set(lang, data[lang].Language);
         }
+        this.setDefaultLang();
+    }
+
+    changeLang(lang) {
+        this.lang = lang;
+        this.numberFormatter = new Intl.NumberFormat(lang);
+    }
+
+    setDefaultLang() {
+        if (window.localStorage.hasOwnProperty('lang')) {
+            const customLang = window.localStorage.getItem('lang');
+            if (data.hasOwnProperty(customLang)) {
+                return this.changeLang(customLang);
+            }
+        }
         for (let lang of navigator.languages) {
             if (data.hasOwnProperty(lang)) {
-                this.lang = lang;
-                this.numberFormatter = new Intl.NumberFormat(lang);
-                return;
+                return this.changeLang(lang);
             }
             if (lang.includes('-')) {
                 const rootLang = lang.split('-')[0];
-                if (data.hasOwnProperty(lang)) {
-                    this.lang = rootLang;
-                    this.numberFormatter = new Intl.NumberFormat(lang);
-                    return;
+                if (data.hasOwnProperty(rootLang)) {
+                    return this.changeLang(rootLang);
                 }
             }
         }
