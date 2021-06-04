@@ -11,6 +11,7 @@
 ^ImpExpPopupTitle
 ^ImportPopupImportOffProgTitle
 ^InstructionsSectionDesc16a
+^InstructionsSectionTitle15
 ^InstructionsSectionTitle16
 ^InstructionsSectionTitle18
 ^InstructionsSectionTitle23

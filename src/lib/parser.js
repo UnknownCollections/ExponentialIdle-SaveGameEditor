@@ -44,7 +44,7 @@ export class Parser {
         this.json_data = JSON.parse(this.raw_data);
         this.parsed_data = this.decodeObj(this.json_data);
         if (!Parser.VALID_SAVE_VERSIONS.has(this.parsed_data.SaveVersion)) {
-            throw `Save version ${this.parsed_data.SaveVersion} is not supported! Supported versions are [${Array.from(Parser.VALID_SAVE_VERSIONS)}].`;
+            console.info( `Save version "${this.parsed_data.SaveVersion}" may not be supported! Officially supported versions are: [${Array.from(Parser.VALID_SAVE_VERSIONS)}].`)
         }
         this.deserializeObjects();
     }

@@ -508,6 +508,7 @@ interface ISession {
     HasSeenSecondTheory: boolean;
     HasSeenLastTheory: boolean;
     HasSeenPublication: boolean;
+    Edited: boolean;
     Panel: number;
     GameId: string;
 }
