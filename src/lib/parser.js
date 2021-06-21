@@ -5,7 +5,7 @@ import { Crypto } from '@/lib/crypto.obfuscate';
 export class Parser {
     static isIsoDateRegex = new RegExp(/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/);
     static isIsoDate = s => Parser.isIsoDateRegex.test(s);
-    static VALID_SAVE_VERSIONS = new Set([120, 121]);
+    static VALID_SAVE_VERSIONS = new Set([120, 121, 123]);
     static KNOWN_KEYS = new Set([
         'Achievements',
         'Achievement',
